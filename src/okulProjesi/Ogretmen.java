@@ -135,7 +135,7 @@ public class Ogretmen {
 
         System.out.println(" ⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚ KAHRAMAN KOLEJI ⇛⇛⇛⇛⇛⇛⇛⇛⇛⇛⇛⇛ \n" +
                 "⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚ BRANS ILE OGRETMEN  ARAMA ⇛⇛⇛⇛⇛⇛⇛⇛⇛⇛⇛⇛ \n" +
-                "TcNo          Isım    Soyisim   D.Yili   Brans");
+                "TcNo          Isım  Soyisim D.Yili Brans");
 
         for (Map.Entry<String,String> each: ogretmenEntrySet
         ) {
