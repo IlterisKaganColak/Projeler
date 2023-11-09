@@ -50,12 +50,16 @@ public class Ogrenci {
                 ogrenciListeYazdir();
                 break;
             case "2" :
+                soyisimdenOgrenciBulma();
                 break;
             case "3" :
+                sinifVeSubeIleOgrenciBulma();
                 break;
             case "4" :
+                ogrenciEkle();
                 break;
             case "5" :
+                tcNoIleOgrenciSilme();
                 break;
             case "a" :
             case "A" :
@@ -80,11 +84,112 @@ public class Ogrenci {
 
     }
 
-    public static void ogrenciListeYazdir() throws InterruptedException {
+    private static void tcNoIleOgrenciSilme() {
+
+        System.out.println("Lutfen Silinecek Ogrencimizin Kimlik No'sunu Giriniz");
+
+        String silinecekOgrenci  = scanner.nextLine();
+
+        String silinecekValue = ogrenciMap.get(silinecekOgrenci);
+
+        String sonucValue = ogrenciMap.remove(silinecekOgrenci);
+
+        try {
+            boolean sonuc = sonucValue.equals(silinecekValue);
+        } catch (Exception e) {
+            System.out.println("Istediginiz Tc Numarasi ile Ogrenci Bulunamadi");
+        }
+    }
+
+    private static void ogrenciEkle() {
+
+        System.out.println("TC NO");
+        String tcNo = scanner.nextLine();
+
+        System.out.println("Isim");
+        String isim = scanner.nextLine();
+
+        System.out.println("Soyisim");
+        String soyisim = scanner.nextLine();
+
+        System.out.println("Dogum Yili");
+        String dogumYili = scanner.nextLine();
+
+        System.out.println("Okul No");
+        String okulNo = scanner.nextLine();
+
+        System.out.println("Sinif");
+        String sinif = scanner.nextLine();
+
+        System.out.println("Sube");
+        String sube = scanner.nextLine();
+
+        String key = tcNo;
+        String value = isim + ", " + soyisim + ", " + dogumYili + ", " + okulNo + ", " +
+                       sinif + ", " + sube;
+
+        ogrenciMap.put(key,value);
+    }
+
+    private static void sinifVeSubeIleOgrenciBulma() throws InterruptedException {
 
         Set<Map.Entry<String,String>> myEntrySet = ogrenciMap.entrySet();
 
-        System.out.println(ogrenciMap);
+        System.out.println("Istediginiz Ogrenci Sinifini Yaziniz");
+
+        String istenilenSinif = scanner.nextLine();
+
+        System.out.println("Istediginiz Ogrenci Subesini Yaziniz");
+
+        String istenilenSube = scanner.nextLine();
+
+        System.out.println(" ⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚ KAHRAMAN KOLEJI ⇛⇛⇛⇛⇛⇛⇛⇛⇛⇛⇛⇛ \n" +
+                "⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚ OGRENCI LISTESI ⇛⇛⇛⇛⇛⇛⇛⇛⇛⇛⇛⇛ \n " +
+                "TC No      Isım  Soyisim   D.Yili Okul No Sinif Sube");
+
+        for (Map.Entry<String,String> each: myEntrySet
+        ) {
+
+            String eachKey = each.getKey();
+            String eachValue = each.getValue();
+            String eachValueArr[] = eachValue.split(", ");
+            if (istenilenSinif.equalsIgnoreCase(eachValueArr[4]) && istenilenSube.equalsIgnoreCase(eachValueArr[5])){
+                System.out.printf("%12s %-6s %-9s %-7s %-8s %-5s %-2s\n",eachKey,eachValueArr[0],eachValueArr[1],eachValueArr[2],eachValueArr[3],
+                        eachValueArr[4],eachValueArr[5]);
+            }
+        }
+        Thread.sleep(5000);
+    }
+
+    private static void soyisimdenOgrenciBulma() throws InterruptedException {
+
+        Set<Map.Entry<String,String>> myEntrySet = ogrenciMap.entrySet();
+
+        System.out.println("Istediginiz Ogrenci Soyismini Yaziniz");
+
+        String istenilenSoyisim = scanner.nextLine();
+
+        System.out.println(" ⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚ KAHRAMAN KOLEJI ⇛⇛⇛⇛⇛⇛⇛⇛⇛⇛⇛⇛ \n" +
+                "⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚ OGRENCI LISTESI ⇛⇛⇛⇛⇛⇛⇛⇛⇛⇛⇛⇛ \n " +
+                "TC No      Isım  Soyisim   D.Yili Okul No Sinif Sube");
+
+        for (Map.Entry<String,String> each: myEntrySet
+        ) {
+
+            String eachKey = each.getKey();
+            String eachValue = each.getValue();
+            String eachValueArr[] = eachValue.split(", ");
+            if (istenilenSoyisim.equalsIgnoreCase(eachValueArr[1])){
+                System.out.printf("%12s %-6s %-9s %-7s %-8s %-5s %-2s\n",eachKey,eachValueArr[0],eachValueArr[1],eachValueArr[2],eachValueArr[3],
+                        eachValueArr[4],eachValueArr[5]);
+            }
+        }
+        Thread.sleep(5000);
+    }
+
+    public static void ogrenciListeYazdir() throws InterruptedException {
+
+        Set<Map.Entry<String,String>> myEntrySet = ogrenciMap.entrySet();
 
         System.out.println(" ⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚ KAHRAMAN KOLEJI ⇛⇛⇛⇛⇛⇛⇛⇛⇛⇛⇛⇛ \n" +
                 "⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚ OGRENCI LISTESI ⇛⇛⇛⇛⇛⇛⇛⇛⇛⇛⇛⇛ \n " +
